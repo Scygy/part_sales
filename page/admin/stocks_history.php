@@ -52,48 +52,34 @@
               </div>
                 <div class="row">
                     <div class="col-sm-12">
-                       &nbsp;<button class="btn btn-primary " onclick="commit()">Commit</button>
                       &nbsp;<button class="btn btn-success " onclick="export_unit('export_po')">Export</button>
                       
                     </div>
                   </div>
                   <hr>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 500px;">
-                <div class="row">
-                  <div class="col-6">
-                      <h4 style="text-align:center;">PO Details</h4>
-                     <table class="table table-head-fixed text-nowrap table-hover" id="view_po">
+             <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 420px;">
+                <table class="table table-head-fixed text-nowrap table-hover" id="view_stocks">
                 <thead style="text-align:center;">
                     <th>#</th>
-                    <th>Purchase Order</th>
+                    <th>Parts Code</th>
                     <th>Parts Name</th>
-                    <th>Customer Code</th>
-                    <th>PO Quantity</th>
-                    
-                    
-            </thead>
-            <tbody id="view_po_details" style="text-align:center;"></tbody>
-                </table>
-                  </div>
-                  <div class="col-6">
-                      <h4 style="text-align:center;">Stocks Details</h4>
-                     <table class="table table-head-fixed text-nowrap table-hover" id="view_po">
-                <thead style="text-align:center;">
-                    <th>#</th>
-                    <th>Parts Name</th>
+                    <th>Supplier Code</th>
                     <th>Description</th>
-                    <th>Remaining Stocks</th>        
-      
+                    <th>Quantity per Box</th>
+                    <th>Net W/T</th>
+                    <th>Box Weight W/T</th>
+                    <th>Gross W/T</th>
+                    <th>Remaining Stocks</th>
+                    <th>Unit</th>
+                    <th>Date Registered</th>
+                    <th>Date Updated</th>
+                    
             </thead>
-            <tbody id="view_stocks_details" style="text-align:center;"></tbody>
+            <tbody id="view_stocks_data" style="text-align:center;"></tbody>
                 </table>
-                  </div>
-               
                  <div class="row">
                   <div class="col-6">
-
-
                     
                   </div>
                   <div class="col-6">
@@ -121,3 +107,4 @@
 
 
 <?php include 'plugins/footer.php';?>
+<?php include 'javascript/stock_history_script.php';?>
