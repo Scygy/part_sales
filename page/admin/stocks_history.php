@@ -59,7 +59,7 @@
                   <hr>
              <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 420px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="view_stocks">
+                <table class="table table-head-fixed text-nowrap table-hover" id="view_stocks_deleted">
                 <thead style="text-align:center;">
                     <th>#</th>
                     <th>Parts Code</th>
@@ -70,13 +70,13 @@
                     <th>Net W/T</th>
                     <th>Box Weight W/T</th>
                     <th>Gross W/T</th>
-                    <th>Remaining Stocks</th>
-                    <th>Unit</th>
-                    <th>Date Registered</th>
-                    <th>Date Updated</th>
+                    <!-- <th>Remaining Stocks</th>
+                    <th>Unit</th> -->
+                    <!-- <th>Date Registered</th>
+                    <th>Date Updated</th> -->
                     
             </thead>
-            <tbody id="view_stocks_data" style="text-align:center;"></tbody>
+            <tbody id="view_stocks_history" style="text-align:center;"></tbody>
                 </table>
                  <div class="row">
                   <div class="col-6">
@@ -107,4 +107,4 @@
 
 
 <?php include 'plugins/footer.php';?>
-<?php include 'javascript/stock_history_script.php';?>
+<?php include 'plugins/javascript/stock_history_script.php';?>

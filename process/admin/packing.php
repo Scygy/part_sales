@@ -156,18 +156,20 @@ if ($method == 'assign_pallet') {
 	$no_of_boxes = $_POST['no_of_boxes'];
 	$measurement = $_POST['measurement'];
 
-	$query = "UPDATE pss_packinglist SET pallet = '$pallet', no_of_boxes = '$no_of_boxes', measurement = '$measurement' WHERE id = '$id'";
+	// $query = "UPDATE pss_packinglist SET pallet = '$pallet', no_of_boxes = '$no_of_boxes', measurement = '$measurement' WHERE id = '$id'";
+
+	$query = "UPDATE pss_packinglist SET pallet = '$pallet', no_of_boxes='$no_of_boxes', measurement = '$measurement' WHERE id = '$id'";
 		
 
 	$stmt = $conn->prepare($query);
 	if ($stmt->execute()) {
-		echo 'success';
+		echo 'SUCCESS';
 	}else{
 		echo 'error';
 	}
 
-
 }
+
 
 
 

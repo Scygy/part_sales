@@ -66,19 +66,22 @@ const get_details =(param)=>{
     var data = param.split('~!~');
     var id = data[0];
     var po_num = data[1];
-    var parts_name = data[2];
+    var pallet = data[2];
+    // var no_of_boxes = data[3];
+    // var measurement = data[4];
 
     $('#id_assign').val(id);
     $('#po_num_assign').val(po_num);
-    // $('#parts_name_assign').val(parts_name);
+    $('#pallet_assign').val(pallet);
+    // $('#no_of_boxes_assign').val(no_of_boxes);
+    // $('#measurement_assign').val(measurement);
+
 }
 
 const assign =()=>{
    var id = document.getElementById('id_assign').value;
    var po_num = document.getElementById('po_num_assign').value;
-   // var parts_name = document.getElementById('parts_name_assign').value;
    var pallet = document.getElementById('pallet_assign').value;
-   
    var no_of_boxes = document.getElementById('no_of_box_assign').value;
    var measurement = document.getElementById('measurement_assign').value;
 
@@ -90,68 +93,37 @@ const assign =()=>{
                     method: 'assign_pallet',
                     id:id,
                     po_num:po_num,
-                    // parts_name:parts_name,
                     pallet:pallet,
                     no_of_boxes:no_of_boxes,
                     measurement:measurement
                 },success:function(response){
                     // console.log(response);
-                     if (response == 'success') {
+                     if (response == 'Failed') {
+                        swal('Failed','Failed','error');
+                        // swal('Success','Successfully','success');
+                        // load_packing();
+                     }else{
+                        // swal('Failed','Failed','error');
                         swal('Success','Successfully','success');
                         load_packing();
-                     }else{
-                        swal('Error','Error','error');
                      }
                 }
    });
 }
 
-
-  // const update_modal =()=>{
-  //  // var arr = [];
-  //  //  $('input.singleCheck:checkbox:checked').each(function () {
-  //  //      arr.push($(this).val());
-  //  //  });
-  //  //  var numberOfChecked = arr.length;
-  //  //  if(numberOfChecked > 0){
-  //       var  pallet_update = document.getElementById('pallet_update').value;
-  //       var boxes_update = document.getElementById('boxes_update').value;
-
-  //   $.ajax({
-  //       url: '../../process/admin/packing.php',
-  //       type: 'POST',
-  //       cache: false,
-  //       data:{
-  //           method: 'update_mee',
-  //           id:arr,
-  //           pallet_update: pallet_update,
-  //          boxes_update:boxes_update
-                        
-  //       },success:function(response) {
-  //           if (response == 'error') {
-  //                swal('FAILED', 'FAILED', 'error');
-  //            }else{
-  //                load_packing();
-                 
-  //               swal('Success', 'Successfully Updated', 'success');
-  //            }
-  //       }
-  //   });
-  //  }
-
-const print_kanapls =()=>{           
-            var tangina = window.open();
-            $('canvas').hide();
-            $('button').hide();
-            $('table').attr('border','1');
-            $('table').css('border-collapse','collapse');
-            tangina.document.write('<style>font-family:arial;</style>');
-            tangina.document.write($('#print').html());
-            tangina.print();
-            tangina.close();
-            location.reload();
+// const print_kanapls =()=>{           
+//             var tangina = window.open();
+//             $('canvas').hide();
+//             $('button').hide();
+//             $('table').attr('border','1');
+//             $('table').css('border-collapse','collapse');
+//             tangina.document.write('<style>font-family:arial;</style>');
+//             tangina.document.write($('#print').html());
+//             tangina.print();
+//             tangina.close();
+//             location.reload();
         
-          }
+//           }
 
     const packing_print=()=>{
         var po_no = document.getElementById('po_no');
@@ -165,7 +137,7 @@ const print_kanapls =()=>{
                 po_no:po_no
             },success:function(response) {
                 if (response == 'success') {
-                    swal('Success', 'Successfully Added to History','sucess');
+                    swal('Success', 'Successfully Added to History','success');
                 }else{
                     swal('Error','Error','error');
                 }

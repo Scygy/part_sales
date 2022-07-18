@@ -3,7 +3,8 @@ include '../../process/conn.php';
 $server_date_only2 = date('Y-m-d');
 
 
-$query = "SELECT shipping_mode,customer_code FROM pss_po_details WHERE date_created = '$server_date_only2'";
+// $query = "SELECT shipping_mode,customer_code FROM pss_po_details WHERE date_created = '$server_date_only2'";
+$query = "SELECT shipping_mode,customer_code FROM pss_po_details";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 if ($stmt->rowCount() > 0) {
@@ -60,8 +61,9 @@ table, th, td {
 		</tr>
 	</thead>
 ';
-}else{
-	echo "<script>window.open('no_record.php','_self')</script>";
+// }else{
+// 	echo "<script>window.open('no_record.php','_self')</script>";
+// }
 }
 
 $query = "SELECT pss_packinglist.id, pss_packinglist.pallet, pss_packinglist.parts_name, pss_packinglist.description, pss_packinglist.qty,  pss_po_details.po_num, pss_stocks.qty_per_box, pss_po_details.shipping_mode, pss_packinglist.no_of_boxes, pss_stocks.net,pss_stocks.box_weight,pss_packinglist.measurement FROM pss_packinglist LEFT JOIN pss_po_details ON pss_po_details.parts_name = pss_packinglist.parts_name LEFT JOIN pss_stocks ON pss_stocks.parts_name = pss_packinglist.parts_name WHERE pss_po_details.Status = 'Transact' GROUP BY pss_po_details.parts_name";

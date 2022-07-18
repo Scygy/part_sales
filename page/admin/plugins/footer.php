@@ -9,11 +9,12 @@
 //MODALS
 include '../../modals/logout.php';
 include '../../modals/admin/packinglist/create_packinglist.php';
-include '../../modals/admin/packinglist/packinglist.php';
+// include '../../modals/admin/packinglist/packinglist.php';
 include '../../modals/admin/packinglist/assign_pallet.php';
 include '../../modals/admin/stocks/import_stocks.php';
 include '../../modals/admin/stocks/update_stock.php';
 include '../../modals/admin/stocks/import_unit.php';
+include '../../modals/admin/stocks/restore_stocks.php';
 include '../../modals/admin/purchase_order/po_import.php';
 
 ?>
