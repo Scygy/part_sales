@@ -73,7 +73,7 @@ if ($method == 'commit_po') {
 		$stmt2 = $conn->prepare($update);
 		if ($stmt2->execute()) {
 			
-			$query = "INSERT INTO pss_packinglist (`parts_name`,`description`) SELECT pss_po_details.parts_name,pss_stocks.description FROM pss_po_details LEFT JOIN pss_stocks ON pss_stocks.parts_name = pss_po_details.parts_name WHERE pss_po_details.po_num = '$po_no' GROUP BY pss_stocks.parts_name";
+			$query = "INSERT INTO pss_packinglist (`po_num`,`parts_name`,`description`) SELECT pss_po_details.po_num, pss_po_details.parts_name,pss_stocks.description FROM pss_po_details LEFT JOIN pss_stocks ON pss_po_details.po_num = pss_po_details.po_num AND pss_stocks.parts_name = pss_po_details.parts_name WHERE pss_po_details.po_num = '$po_no' GROUP BY pss_stocks.parts_name";
  		$stmt3 = $conn->prepare($query);
  		if ($stmt3->execute()) {
  			$update_status = "UPDATE pss_po_details SET Status = 'Transact' WHERE po_num = '$po_no'";
@@ -144,7 +144,7 @@ if ($method == 'fetch_packing_details') {
 		}
 	}else{
 		echo '<tr>';
-			echo '<td colspan = "5">No Result!</td>';
+			echo '<td colspan = "5" >No Result!</td>';
 		echo '</tr>';
 	}
 }
@@ -251,22 +251,24 @@ if ($method == 'assign_pallet') {
 
 
 if ($method == 'packing_commit') {
-	$po_no = $_POST['po_no'];
+	$po_num = $_POST['po_num'];
+	$parts_name = $_POST['parts_name'];
 
-	$query = "INSERT INTO pss_packing_history (`pallet`,`parts_name`,`description`,`qty`,`po_num`,`qty_per_box`,`shipping_mode`,`no_of_boxes`,`net`,`box_weight`,`gross`,`measurement`) SELECT print_packing.id, print_packing.pallet, print_packing.parts_name, print_packing.description, print_packing.qty, print_packing.po_num, print_packing.qty_per_box, print_packing.shipping_mode, print_packing.no_of_boxes, print_packing.net, print_packing.box_weight, print_packing.measurement FROM print_packing";
+	$query = "INSERT INTO pss_packing_history (`pallet`,`parts_name`,`description`,`qty`,`po_num`,`qty_per_box`,`shipping_mode`,`no_of_boxes`,`net`,`box_weight`,`gross`,`measurement`) SELECT print_packing.id, print_packing.pallet, print_packing.parts_name, print_packing.description, print_packing.qty, print_packing.po_num, print_packing.qty_per_box, print_packing.shipping_mode, print_packing.no_of_boxes, print_packing.net, print_packing.box_weight, print_packing.measurement pss_packinglist.po_num FROM print_packing LEFT JOIN pss_packinglist ON pss_packinglist.po_num = print_packing.po_num";
 	$stmt = $conn->prepare($query);
 	if ($stmt->execute()) {
-
-	$query2 = "UPDATE pss_packinglist SET Status = 'Transact'";
+	$query2 = "DELETE FROM print_packing WHERE parts_code = '$parts_code' AND parts_name = '$parts_name'";
 	$stmt2 = $conn->prepare($query2);
-	if ($stm2->execute()) {
-		echo 'sucess';
-	}
+	if ($stmt2->execute()) {
+		echo 'success';
+	}else{
+
 		echo 'error';
+	}
 	}else{
 		echo 'error';
 	}
-	}
+}
 
 
 $conn = NULL;

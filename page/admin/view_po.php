@@ -65,11 +65,11 @@
                   </div>
                 </div>
               </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-6">
                       &nbsp;<button class="btn btn-success " onclick="export_unit('export_po')">Export</button>
                     </div>
-                  </div>
+                  </div> -->
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 420px;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="view_po">

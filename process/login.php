@@ -25,10 +25,10 @@
             }
             if($role == 'admin'){
                 $_SESSION['username'] = $username;
-                header('location: page/admin/po.php');
+                header('location: page/admin/dashboard.php');
             }else if($role == 'user'){
                 $_SESSION['username'] = $username;
-                header('location: page/user/dashboard.php');    
+                header('location: page/user/po_commit.php');    
             }
         }else{
             echo 'Wrong Username, Password or User type';

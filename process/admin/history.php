@@ -5,7 +5,7 @@ $method = $_POST['method'];
 
 if ($method = 'stocks_history') {
 	$id = $_POST['id'];
-	$parts_name = $_POST['parts_name'];
+	// $parts_name = $_POST['parts_name'];
 	$c = 0;
 
 	$query = "SELECT parts_code, parts_name, supplier_code, description, qty_per_box, net, box_weight, gross, remaining_stck, unit FROM pss_deleted_stocks GROUP BY parts_name";
@@ -38,12 +38,23 @@ if ($method = 'stocks_history') {
 }
 
 
-if ($method == 'restore_stocks') {
-	$id = $_POST['id'];
-	$parts_code = $_POST['parts_code'];
-	$parts_name = $_POST['parts_name'];
+// if ($method == 'restore_stocks') {
+// 	$id = $_POST['id'];
 
-	$query = " INSERT INTO pss_stocks (`parts_code`,`parts_name`,`supplier_code`,`qty_per_box`,`description`,`net`,`box_weight`,`gross`,`remaining_stck`,`unit`,`customer_unit_price`,`total_amount`,`date_registered`,`date_updated`,`customer_code`) SELECT pss_deleted_stocks.parts_code,pss_deleted_stocks.parts_name, pss_deleted_stocks.supplier_code, pss_deleted_stocks.qty_per_box, pss_deleted_stocks.description, pss_deleted_stocks.net, pss_deleted_stocks.box_weight, pss_deleted_stocks.gross,pss_deleted_stocks.remaining_stck, pss_deleted_stocks.unit, pss_deleted_stocks.customer_unit_price,pss_deleted_stocks.total_amount, pss_deleted_stocks.date_registered, pss_deleted_stocks.date_updated, pss_deleted_stocks.customer_code FROM pss_deleted_stocks WHERE parts_code = '$parts_code' AND parts_name = '$parts_name' AND id = '$id'";
+// 	$query = "INSERT INTO pss_stocks (`parts_code`,`parts_name`,`supplier_code`,`description`,`qty_per_box`,`net`,`box_weight`,`gross`,`remaining_stck`,`unit`,`customer_unit_price`,`total_amount`,`date_registered`,`date_updated`,`customer_code`) SELECT parts_code,parts_name,supplier_code,description,qty_per_box,net,box_weight,gross,remaining_stck,unit,customer_unit_price,total_amount,date_registered,date_updated,customer_code FROM pss_deleted_stocks";
+// 	$stmt = $conn->prepare($query);
+// 	if ($stmt->execute()) {
+// 		echo 'success';
+// 	}else{
+// 		echo 'error';
+// 	}
+// }
+
+
+if ($method == 'restore_stockss') {
+	$id = $_POST['id'];
+
+	$query ="INSERT INTO pss_stocks (`parts_code`,`parts_name`,`supplier_code`,`description`,`qty_per_box`,`net`,`box_weight`,`gross`,`remaining_stck`,`unit`,`customer_unit_price`,`total_amount`,`date_registered`,`date_updated`,`customer_code`) SELECT parts_code,parts_name,supplier_code,description,qty_per_box,net,box_weight,gross,remaining_stck,unit,customer_unit_price,total_amount,date_registered,date_updated,customer_code FROM pss_deleted_stocks";
 	$stmt = $conn->prepare($query);
 	if ($stmt->execute()) {
 		echo 'success';
@@ -69,7 +80,6 @@ if ($method == 'restore_stocks') {
 
 
 
-
-
+$conn =NULL;
 
 ?>

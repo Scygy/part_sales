@@ -71,7 +71,7 @@
            <div class="row">
                         <div class="col-12">
                           <p style="text-align:right;">
-                        <button type="button" class="btn btn-primary"  onclick="restore_stocks()">Restore</button>
+                        <button type="button" class="btn btn-primary"  onclick="restore_stocksss()" disabled>Restore</button>
                           </p>
                         </div>
            </div>

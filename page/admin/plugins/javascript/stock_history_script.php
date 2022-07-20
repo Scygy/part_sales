@@ -2,15 +2,15 @@
 	
 	const load_stocks_history =()=>{
 		var id = document.getElementById('id_restore').value;
-		var parts_name = document.getElementById('parts_name').value;
+		// var parts_name = document.getElementById('parts_name').value;
 		$.ajax({
 			url: '../../process/admin/history.php',
 			type: 'POST',
 			cache: false,
 			data:{
 				method: 'stocks_history',
-				id:id,
-				parts_name:parts_name
+				id:id
+				// parts_name:parts_name
 			},success:function(response) {
 				 document.getElementById('view_stocks_history').innerHTML = response;
 				 $('#spinner').fadeOut(function(){
@@ -75,28 +75,20 @@
 }
 
 
-const restore_stocks =()=>{
+const restore_stocksss =()=>{
 
 	var id = document.getElementById('id_restore').value;
-	var parts_code = document.getElementById('parts_code_restore').value;
-	var parts_name = document.getElementById('parts_name_restore').value;
+	// console.log(id);
 
 	$.ajax({
 		url:'../../process/admin/history.php',
 		type: 'POST',
 		cache: false,
 		data:{
-			method: 'restore_stocks',
-			id:id,
-			parts_code:parts_code,
-			parts_name:parts_name
-		},success:function (k) {
-			if (k == 'success') {
-				swal('Information','Stocks have been Restored','info');
-				load_stocks_history();
-			}else{
-				swal('Error','Error','error');
-			}
+			method: 'restore_stockss',
+			id:id
+		},success:function (response) {
+			console.log(response);
 		}
 	});
 }

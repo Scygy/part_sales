@@ -1,124 +1,108 @@
 
 <?php include 'plugins/navbar.php';?>
 <?php include 'plugins/sidebar/dashboardbar.php';?>
+
   <!-- Main Sidebar Container -->
- <section class="content">
-      <div class="container-fluid">
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+ <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Prepare Packing List</h1>
-            <br>
+            <h1 class="m-0">Dashboard
+            </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Prepare Packing List</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <div class="row">
-            
-            </div>
-          </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
-       <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title col-6">
-                  <div class="row">
-                    <div class="col-5">
-                      <label>P.O. Number:</label><input type="text" name="po_no"  id="po_no" class="form-control">
-                    </div>
-             
-                   
-                  </div>
-                </h3> 
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 100px;">
-                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_packing()">Search <i class="fas fa-search"></i></button> 
-                  </div>
-                </div>
-              </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                       &nbsp;<button class="btn btn-primary " onclick="commit()">Commit</button>
-                      &nbsp;<button class="btn btn-success " onclick="export_unit('export_po')">Export</button>
-                      
-                    </div>
-                  </div>
-                  <hr>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 500px;">
-                <div class="row">
-                  <div class="col-6">
-                      <h4 style="text-align:center;">PO Details</h4>
-                     <table class="table table-head-fixed text-nowrap table-hover" id="view_po">
-                <thead style="text-align:center;">
-                    <th>#</th>
-                    <th>Purchase Order</th>
-                    <th>Parts Name</th>
-                    <th>Customer Code</th>
-                    <th>PO Quantity</th>
-                    
-                    
-            </thead>
-            <tbody id="view_po_details" style="text-align:center;"></tbody>
-                </table>
-                  </div>
-                  <div class="col-6">
-                      <h4 style="text-align:center;">Stocks Details</h4>
-                     <table class="table table-head-fixed text-nowrap table-hover" id="view_po">
-                <thead style="text-align:center;">
-                    <th>#</th>
-                    <th>Parts Name</th>
-                    <th>Description</th>
-                    <th>Remaining Stocks</th>        
-      
-            </thead>
-            <tbody id="view_stocks_details" style="text-align:center;"></tbody>
-                </table>
-                  </div>
+    <section class="content">
+<div class="container-fluid">
+
+<div class="row">
+<div class="col-lg-3 col-6">
+
+<div class="small-box bg-info">
+<div class="inner">
+  <a href="" style="color:white;" data-toggle="modal" data-target="#import_menu">
+<h3>Import</h3>
+<p>Stocks/Unit Price/Purchase Order</p>
+</div>
+<div class="icon">
+<i class="fas fa-download"></i>
+</div>
+<a href="#" data-toggle="modal" data-target="#import_menu" class="small-box-footer">Import Now <i class="fas fa-arrow-circle-down"></i></a>
+</div>
+</div>
+
+<div class="col-lg-3 col-6">
+
+<div class="small-box bg-success">
+<div class="inner">
+  <a href="" style="color:white;" data-toggle="modal" data-target="#viewing_menu">
+<h3>Viewing<!-- <sup style="font-size: 20px">%</sup> --></h3>
+<p>Stocks/Unit Price/PO Summary</p>
+</div>
+<div class="icon">
+<i class="fas fa-eye"></i>
+</div>
+<a href="#" data-toggle="modal" data-target="#viewing_menu" class="small-box-footer">View now <i class="fas fa-arrow-circle-down"></i></a>
+</div>
+</div>
+
+<div class="col-lg-3 col-6">
+
+<div class="small-box bg-warning">
+<div class="inner">
+  <a href="" style="color:black;" data-toggle="modal" data-target="#prepare_menu">
+<h3>Preparing Files</h3>
+<p>Sales/Packinglist/Invoice</p>
+</div>
+<div class="icon">
+<i class="fas fa-file"></i>
+</div>
+<a href="#" data-toggle="modal" data-target="#prepare_menu" class="small-box-footer">More info <i class="fas fa-arrow-circle-down"></i></a>
+</div>
+</div>
+
+<div class="col-lg-3 col-6">
+
+<div class="small-box bg-danger">
+<div class="inner">
+<h3>65</h3>
+<p>Unique Visitors</p>
+</div>
+<div class="icon">
+<i class="ion ion-pie-graph"></i>
+</div>
+<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+</div>
+</div>
+
+</div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
                
-                 <div class="row">
-                  <div class="col-6">
-
-
-                    
-                  </div>
-                  <div class="col-6">
-                      <input type="hidden" name="" id="stocks">
-   
-                    <div class="spinner" id="spinner" style="display:none;">
-                        
-                        <div class="loader float-sm-center"></div>    
-                    </div>
-             
-                  </div>
-
-              </div>
-              <!-- /.card-body -->
+                </div>
+              </form>
             </div>
-            <!-- /.card -->
-          </div>
-        </div>
-        <!-- /.row -->
-
-        
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
+</div>
 
 
 <?php include 'plugins/footer.php';?>
-<?php include 'plugins/javascript/dashboard_script.php';?>

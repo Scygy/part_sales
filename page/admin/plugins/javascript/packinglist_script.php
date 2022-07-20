@@ -126,7 +126,8 @@ const assign =()=>{
 //           }
 
     const packing_print=()=>{
-        var po_no = document.getElementById('po_no');
+        var po_num = document.getElementById('po_num').value;;
+        var parts_name = document.getElementById('parts_name').value;
 
         $.ajax({
             url:'../../process/admin/packing.php',

@@ -3,6 +3,9 @@
 const load_po =()=>{
 	var po_num = document.getElementById('po_num').value;
 	var customer_code = document.getElementById('customer_code').value;
+	if (po_num == '') {
+		swal('Information','Please Input Purchase Order No.','info');
+	}else{
 	$('#spinner').css('display','block');
 	$.ajax({
 		url: '../../process/admin/po_process.php',
@@ -19,6 +22,7 @@ const load_po =()=>{
 			});
 		}
 	});
+}
 }
 
 </script>
