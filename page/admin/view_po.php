@@ -39,23 +39,26 @@
                     <div class="col-5">
                       <label>Purchase Order Number:</label><input type="text" name="po_num"  id="po_num" class="form-control">
                     </div>
-                    <div class="col-4">
-                      <label>Customer:</label>
-                       <select id="customer_code" class="form-control">
+                    <div class="col-5">
+                      <label>Status:</label><input type="text" name="status"  id="status" class="form-control">
+                    </div>
+                    <!-- <div class="col-4">
+                      <label>Status:</label>
+                       <select id="status" class="form-control">
                             <option value="">Select Customer</option>
                           <?php
-                            require '../../process/conn.php';
-                            $get_description = "SELECT DISTINCT customer_code FROM pss_po_details";
-                            $stmt = $conn->prepare($get_description);
-                            $stmt->execute();
-                            foreach($stmt->fetchALL() as $x){
+                            // require '../../process/conn.php';
+                            // $get_description = "SELECT DISTINCT customer_code FROM pss_po_details";
+                            // $stmt = $conn->prepare($get_description);
+                            // $stmt->execute();
+                            // foreach($stmt->fetchALL() as $x){
 
-                                echo '<option value="'.$x['customer_code'].'">'.$x['customer_code'].'</option>';
-                            }
+                            //     echo '<option value="'.$x['customer_code'].'">'.$x['customer_code'].'</option>';
+                            // }
 
                      ?>
                         </select>
-                    </div>
+                    </div> -->
                    
                   </div>
                 </h3> 
@@ -76,12 +79,12 @@
                 <thead style="text-align:center;">
                     <th>#</th>
                     <th>Purchase Order</th>
-                    <th>Parts Code</th>
-                    <th>Parts Name</th>
+                    <th>Status</th>
+                    <!-- <th>Parts Name</th>
                     <th>Description</th>
                     <th>Supplier Code</th>
                     <th>Customer Code</th>
-                    <th>Stocks Needed</th>
+                    <th>Stocks Needed</th> -->
                     
             </thead>
             <tbody id="view_po_data" style="text-align:center;"></tbody>

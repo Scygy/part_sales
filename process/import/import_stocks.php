@@ -84,9 +84,9 @@
                     echo '<script>
                     var x = confirm("SUCCESS! # OF ERRORS '.$error.' ");
                     if(x == true){
-                        location.replace("../../page/admin/stocks.php");
+                        location.replace("../../page/admin/dashboard.php");
                     }else{
-                        location.replace("../../page/admin/stocks.php");
+                        location.replace("../../page/admin/dashboard.php");
                     }
                 </script>'; 
                }else{

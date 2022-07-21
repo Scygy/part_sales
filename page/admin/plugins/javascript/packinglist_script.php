@@ -1,8 +1,4 @@
 <script type="text/javascript">
-    $(document).ready(function(){
-    load_packing();
-    });
-
     
 	const load_packing =()=>{
 	// var parts_name = document.getElementById('parts_name').value;
@@ -178,16 +174,6 @@ const assign =()=>{
 
 
 
-// const total =()=>{
-//     $(document).ready(function() {
-//         var dataTable = $('#total').DataTable({
-//             "processing" : true;
-//             "serverSide" : true;
-//             ""
-
-//         })
-//     })
-// }
 
 const print_packing =()=>{
     window.open('print_packing.php');

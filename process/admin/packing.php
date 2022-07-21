@@ -8,7 +8,7 @@ if ($method == 'fetch_po_details') {
 	$c = 0;
 
 	// $query = "SELECT * FROM pss_po_details WHERE po_num = '$po_no' AND Status = 'Pending'";
-	$query = "SELECT * FROM pss_po_details,pss_stocks WHERE pss_po_details.parts_name = pss_stocks.parts_name AND pss_po_details.po_num = '$po_no' AND pss_po_details.Status = 'Pending' GROUP BY pss_stocks.parts_name";
+	$query = "SELECT * FROM pss_po_details,pss_stocks WHERE pss_po_details.parts_name = pss_stocks.parts_name AND pss_po_details.po_num = '$po_no' AND pss_po_details.Status = 'Open' GROUP BY pss_stocks.parts_name";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -34,7 +34,7 @@ if ($method == 'fetch_stock_details') {
 	$c = 0;
 
 	
-			$query = "SELECT * FROM pss_po_details,pss_stocks WHERE pss_po_details.parts_name = pss_stocks.parts_name AND pss_po_details.po_num = '$po_no' AND pss_po_details.Status = 'Pending' GROUP BY pss_stocks.parts_name";
+			$query = "SELECT * FROM pss_po_details,pss_stocks WHERE pss_po_details.parts_name = pss_stocks.parts_name AND pss_po_details.po_num = '$po_no' AND pss_po_details.Status = 'Open' GROUP BY pss_stocks.parts_name";
 
 			$stmt2 = $conn->prepare($query);
 			$stmt2->execute();
@@ -76,7 +76,7 @@ if ($method == 'commit_po') {
 			$query = "INSERT INTO pss_packinglist (`po_num`,`parts_name`,`description`) SELECT pss_po_details.po_num, pss_po_details.parts_name,pss_stocks.description FROM pss_po_details LEFT JOIN pss_stocks ON pss_po_details.po_num = pss_po_details.po_num AND pss_stocks.parts_name = pss_po_details.parts_name WHERE pss_po_details.po_num = '$po_no' GROUP BY pss_stocks.parts_name";
  		$stmt3 = $conn->prepare($query);
  		if ($stmt3->execute()) {
- 			$update_status = "UPDATE pss_po_details SET Status = 'Transact' WHERE po_num = '$po_no'";
+ 			$update_status = "UPDATE pss_po_details SET Status = 'Closed for Invoicing' WHERE po_num = '$po_no'";
  			$stmt4 = $conn->prepare($update_status);
  			if ($stmt4->execute()) {
  				echo 'success';
@@ -107,7 +107,8 @@ if ($method == 'fetch_packing_details') {
 	// $parts_name = $_POST['parts_name'];
 	$c = 0;
 
-	$query = "SELECT pss_packinglist.id, pss_packinglist.pallet, pss_packinglist.parts_name, pss_packinglist.description, pss_packinglist.qty, pss_po_details.po_num, pss_stocks.qty_per_box, pss_po_details.shipping_mode, pss_packinglist.no_of_boxes, pss_stocks.net,pss_stocks.box_weight, pss_stocks.gross ,pss_packinglist.measurement, pss_packinglist.Status FROM pss_packinglist LEFT JOIN pss_po_details ON pss_po_details.parts_name = pss_packinglist.parts_name LEFT JOIN pss_stocks ON pss_stocks.parts_name = pss_packinglist.parts_name WHERE pss_po_details.Status = 'Transact' GROUP BY pss_po_details.parts_name";
+	$query = "SELECT pss_packinglist.id, pss_packinglist.pallet, pss_packinglist.parts_name, pss_packinglist.description, pss_packinglist.qty, pss_po_details.po_num, pss_stocks.qty_per_box, pss_po_details.shipping_mode, pss_packinglist.no_of_boxes, pss_stocks.net,pss_stocks.box_weight, pss_stocks.gross ,pss_packinglist.measurement, pss_packinglist.Status FROM pss_packinglist LEFT JOIN pss_po_details ON pss_po_details.parts_name = pss_packinglist.parts_name LEFT JOIN pss_stocks ON pss_stocks.parts_name = pss_packinglist.parts_name WHERE pss_po_details.Status = 'Closed for Invoicing' GROUP BY pss_po_details.parts_name";
+	
 	$stmt = $conn-> prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) { 

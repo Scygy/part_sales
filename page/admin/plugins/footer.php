@@ -7,6 +7,8 @@
   </footer>
 <?php
 //MODALS
+include '../../modals/admin/import/stocks/update_stock.php';
+include '../../modals/admin/packinglist/assign_pallet.php';
 include '../../modals/admin/import/purchase_order/po_import.php';
 include '../../modals/admin/import/stocks/import_unit.php';
 include '../../modals/admin/import/stocks/import_stocks.php';
@@ -15,11 +17,10 @@ include '../../modals/admin/packinglist/create_packinglist.php';
 include '../../modals/admin/import/import_menu.php';
 include '../../modals/admin/preparefiles/prepare_files.php';
 include '../../modals/admin/viewing/viewing_menu.php';
-include '../../modals/admin/packinglist/assign_pallet.php';
-include '../../modals/admin/import/stocks/update_stock.php';
 include '../../modals/admin/import/stocks/import_unit.php';
 include '../../modals/admin/import/stocks/restore_stocks.php';
 include '../../modals/admin/import/stocks/import_stocks_single.php';
+include '../../modals/admin/purchaseorder/po_modal.php';
 
 
 
