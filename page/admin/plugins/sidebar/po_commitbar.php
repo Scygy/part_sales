@@ -92,6 +92,16 @@
               </p>
             </a>
           </li>
+           <li class="nav-item">
+            <a href="view_po_sum.php" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+              <p>
+               
+               View P. O. Summary
+               
+              </p>
+            </a>
+          </li>
          
                <li class="nav-item">
             <a href="po_commit.php" class="nav-link active">

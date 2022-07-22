@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/view_pobar.php'; ?>
+<?php include 'plugins/sidebar/view_po_sumbar.php'; ?>
  
   <section class="content">
       <div class="container-fluid">
@@ -64,7 +64,7 @@
                 </h3> 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 100px;">
-                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_po()">Search <i class="fas fa-search"></i></button> 
+                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_po_sum()">Search <i class="fas fa-search"></i></button> 
                   </div>
                 </div>
               </div>
@@ -75,7 +75,7 @@
                   </div> -->
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 420px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="view_po">
+                <table class="table table-head-fixed text-nowrap table-hover" id="view_po_sum">
                 <thead style="text-align:center;">
                     <th>#</th>
                     <th>Purchase Order</th>
@@ -87,7 +87,7 @@
                     <th>Stocks Needed</th> -->
                     
             </thead>
-            <tbody id="view_po_data" style="text-align:center;"></tbody>
+            <tbody id="view_po_data_sum" style="text-align:center;"></tbody>
                 </table>
                  <div class="row">
                   <div class="col-6">
@@ -112,7 +112,7 @@
           </div>
         </div>
         <!-- /.row -->
- 
+
         
 </div>
 </div>

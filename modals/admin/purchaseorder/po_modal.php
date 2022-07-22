@@ -17,11 +17,6 @@
         </h5>
         </div>
         <div class="col-2">
-         <h5 class="" id="">Neopos Number
-          <input type="Text" name="neopos_no_po_details" id="neopos_no_po_details" class="form-control" disabled>
-        </h5>
-        </div>
-        <div class="col-2">
          <h5 class="" id="">Status
           <input type="Text" name="Status_po_details" id="Status_po_details" class="form-control" disabled>
         </h5>
@@ -36,6 +31,7 @@
                     <th>Description</th>
                     <th>Supplier Code</th>
                     <th>Quantity</th>
+                    <th>Neopos Number</th>
                     
             </thead>
             <tbody id="view_po_data_modal" style="text-align:center;"></tbody>
@@ -62,35 +58,11 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="load_po_detail()">Eyy</button> 
+        <button type="button" class="btn btn-primary" onclick="load_po_detail()">Load</button> 
+        <!-- <a href="" onclick="load_po_detail()"></a> -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
        <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-
-  const load_po_detail =()=>{
-    var id = document.getElementById('id_po_details').value;
-    var po_num = document.getElementById('po_num_details').value;
-    $.ajax({
-      url: '../../process/admin/po_process.php',
-      type: 'POST',
-      cache: false,
-      data:{
-        method: 'load_po_details_modal',
-        id:id,
-        po_num:po_num
-      },success:function(response) {
-        document.getElementsByTagName('view_po_data_modal').innerHTML = response;
-        $('#spinner').fadeOut(function(){
-        // body...
-      });
-      }
-    });
-  }
-
-
-</script>

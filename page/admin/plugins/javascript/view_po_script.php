@@ -1,5 +1,10 @@
 <script type="text/javascript">
-	
+
+$(document).ready(function() {
+    load_po_detail();
+    });
+
+
 const load_po =()=>{
 	var po_num = document.getElementById('po_num').value;
 	var status = document.getElementById('status').value;
@@ -31,6 +36,7 @@ const get_po_details =(param)=>{
 	var string = param.split('~!~');
 	var id = string[0];
 	var po_num = string[1];
+	var Status = string[2];
 	// var parts_code = string[2];
 	// var parts_name = string[3];
 	// var description = string[4];
@@ -38,11 +44,12 @@ const get_po_details =(param)=>{
 	// var quantity = string[6];
 	// var shipping_mode = string[7];
 	// var date_created = string[8];
-	var neopos_no = string[2];
-	var Status = string[3];
+	// var neopos_no = string[2];
+	
 
 document.getElementById('id_po_details').value = id;
 document.getElementById('po_num_details').value = po_num;
+document.getElementById('Status_po_details').value = Status;
 // document.getElementById('parts_code_po_details').value = parts_code;
 // document.getElementById('parts_name_po_details').value = parts_name;
 // document.getElementById('description_po_details').value = description;
@@ -50,9 +57,34 @@ document.getElementById('po_num_details').value = po_num;
 // document.getElementById('quantity_po_details').value = quantity;
 // document.getElementById('shipping_mode_po_details').value = shipping_mode;
 // document.getElementById('date_created_po_details').value = date_created;
-document.getElementById('neopos_no_po_details').value = neopos_no;
-document.getElementById('Status_po_details').value = Status;
+// document.getElementById('neopos_no_po_details').value = neopos_no;
 
 }
+
+
+  const load_po_detail =()=>{
+    var po_num = document.getElementById('po_num_details').value;
+
+    $.ajax({
+      url: '../../process/admin/po_process.php',
+      type: 'POST',
+      cache: false,
+      data:{
+        method: 'load_po_details_modal',
+        po_num:po_num
+      },success:function(response) {
+        document.getElementById('view_po_data_modal').innerHTML = response;
+        $('#spinner').fadeOut(function(){
+        // body...
+
+      });
+
+      }
+
+    });
+
+  }
+
+
 
 </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2022 at 12:55 PM
+-- Generation Time: Jul 22, 2022 at 10:30 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -112,9 +112,9 @@ CREATE TABLE `pss_deleted_stocks` (
 --
 
 INSERT INTO `pss_deleted_stocks` (`id`, `parts_code`, `parts_name`, `supplier_code`, `qty_per_box`, `description`, `net`, `box_weight`, `gross`, `remaining_stck`, `unit`, `customer_unit_price`, `total_amount`, `date_registered`, `date_updated`, `customer_code`) VALUES
-(11, '0053A', 'COH-BB2230', 'BIG PH', '70', 'Protector', '0.023857143', '0.007142857', '0.031', '5005', 'pcs', NULL, NULL, '2022-07-16', '2022-07-16', 'FAS'),
-(12, '0053A', 'COH-BB2230', 'BIG PH', '70', 'Protector', '0.023857143', '0.007142857', '0.031', '5005', 'pcs', NULL, NULL, '2022-07-16', '2022-07-16', 'FAPV'),
-(13, '0053A', 'COH-BB2230', 'BIG PH', '70', 'Protector', '0.023857143', '0.007142857', '0.031', '5005', 'pcs', NULL, NULL, '2022-07-16', '2022-07-16', 'FAVV');
+(1, '0053A', 'COH-BB2230', 'BIG PH', '70', 'Protector', '0.023857143', '0.007142857', '0.031', '80', 'pcs', NULL, NULL, '2022-07-19', '2022-07-19', 'FAS'),
+(2, '0053A', 'COH-BB2230', 'BIG PH', '70', 'Protector', '0.023857143', '0.007142857', '0.031', '80', 'pcs', NULL, NULL, '2022-07-19', '2022-07-19', 'FAPV'),
+(3, '0053A', 'COH-BB2230', 'BIG PH', '70', 'Protector', '0.023857143', '0.007142857', '0.031', '80', 'pcs', NULL, NULL, '2022-07-19', '2022-07-19', 'FAVV');
 
 -- --------------------------------------------------------
 
@@ -124,6 +124,7 @@ INSERT INTO `pss_deleted_stocks` (`id`, `parts_code`, `parts_name`, `supplier_co
 
 CREATE TABLE `pss_packinglist` (
   `id` int(20) NOT NULL,
+  `po_num` varchar(20) NOT NULL,
   `parts_name` varchar(50) NOT NULL,
   `description` varchar(20) NOT NULL,
   `qty` varchar(10) NOT NULL,
@@ -138,8 +139,14 @@ CREATE TABLE `pss_packinglist` (
 -- Dumping data for table `pss_packinglist`
 --
 
-INSERT INTO `pss_packinglist` (`id`, `parts_name`, `description`, `qty`, `pallet`, `no_of_boxes`, `measurement`, `Status`, `date_created`) VALUES
-(33, 'COH-BB2230', 'Protector', '', 'AK-47', '85', '1.21', 'Pending', NULL);
+INSERT INTO `pss_packinglist` (`id`, `po_num`, `parts_name`, `description`, `qty`, `pallet`, `no_of_boxes`, `measurement`, `Status`, `date_created`) VALUES
+(1, 'P22-013-FALP', 'COH-BB2230', 'Protector', '', '', '788', '1.21', 'Pending', NULL),
+(2, 'P22-013-FALP', 'COH-B2250', '', '', '', '0', '1.21', 'Pending', NULL),
+(3, 'P22-013-FALP', 'COH-BB2230', 'Protector', '', '', '0', '1.21', 'Pending', NULL),
+(5, 'P22-013-FALP', 'COH-B2250', '', '', '', '0', '1.21', 'Pending', NULL),
+(6, 'P22-013-FALP', 'COH-BB2230', 'Protector', '', '', '0', '1.21', 'Pending', NULL),
+(8, 'P22-013-FALP', 'COH-B2250', '', '', '', '0', '1.21', 'Pending', NULL),
+(9, 'P22-013-FALP', 'COH-BB2230', 'Protector', '', '', '0', '1.21', 'Pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -182,7 +189,7 @@ CREATE TABLE `pss_po_details` (
   `shipping_mode` varchar(5) NOT NULL,
   `date_created` varchar(20) NOT NULL,
   `neopos_no` varchar(10) NOT NULL,
-  `Status` varchar(10) NOT NULL DEFAULT 'Pending'
+  `Status` varchar(30) NOT NULL DEFAULT 'Open'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -190,7 +197,8 @@ CREATE TABLE `pss_po_details` (
 --
 
 INSERT INTO `pss_po_details` (`id`, `po_num`, `parts_code`, `parts_name`, `description`, `supplier_code`, `customer_code`, `quantity`, `shipping_mode`, `date_created`, `neopos_no`, `Status`) VALUES
-(19, 'P22-013-FALP', '0053A', 'COH-BB2230', 'Connector', 'BIG PH', 'FAS', '2660', 'AIR', '2022-07-14', '200222', 'Transact');
+(4, 'P22-013-FALP', '0053A', 'COH-BB2230', 'Protector', 'BIG PH', 'FAS', '2660', 'AIR', '2022-07-22', '200221', 'Closed for Invoicing'),
+(5, 'P22-013-FALP', '0053C', 'COH-B2250', 'Protector', 'BIG PH', 'FAS', '1800', 'AIR', '2022-07-22', '200222', 'Closed for Invoicing');
 
 -- --------------------------------------------------------
 
@@ -234,6 +242,15 @@ CREATE TABLE `pss_stocks` (
   `date_updated` varchar(50) DEFAULT NULL,
   `customer_code` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pss_stocks`
+--
+
+INSERT INTO `pss_stocks` (`id`, `parts_code`, `parts_name`, `supplier_code`, `description`, `qty_per_box`, `net`, `box_weight`, `gross`, `remaining_stck`, `unit`, `customer_unit_price`, `total_amount`, `date_registered`, `date_updated`, `customer_code`) VALUES
+(7, '0053A', 'COH-BB2230', 'BIG PH', 'Protector', 70, '0.023857143', '0.007142857', '0.031', '2340', 'pcs', '0.31', NULL, '2022-07-19', '2022-07-22', 'FAS'),
+(8, '0053A', 'COH-BB2230', 'BIG PH', 'Protector', 70, '0.023857143', '0.007142857', '0.031', '2340', 'pcs', NULL, NULL, '2022-07-19', '2022-07-22', 'FAPV'),
+(9, '0053A', 'COH-BB2230', 'BIG PH', 'Protector', 70, '0.023857143', '0.007142857', '0.031', '2340', 'pcs', NULL, NULL, '2022-07-19', '2022-07-22', 'FAVV');
 
 -- --------------------------------------------------------
 
@@ -313,25 +330,25 @@ ALTER TABLE `pss_accounts`
 -- AUTO_INCREMENT for table `pss_deleted_stocks`
 --
 ALTER TABLE `pss_deleted_stocks`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pss_packinglist`
 --
 ALTER TABLE `pss_packinglist`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pss_packing_history`
 --
 ALTER TABLE `pss_packing_history`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pss_po_details`
 --
 ALTER TABLE `pss_po_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pss_set_invoice`
@@ -343,7 +360,7 @@ ALTER TABLE `pss_set_invoice`
 -- AUTO_INCREMENT for table `pss_stocks`
 --
 ALTER TABLE `pss_stocks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
